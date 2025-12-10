@@ -6,6 +6,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import BookCard from "./components/BookCard/BookCard";
 import api from "./utils/baseUrl";
+import { IMAGE_BASE_URL } from "./utils/baseUrl"; 
 
 export default function Home() {
   const router = useRouter();
@@ -32,7 +33,7 @@ export default function Home() {
   };
 
   const addProd = () => {
-    router.push("/AddProduct");
+    router.push("/Admin/AddBook");
   };
 
   if (loading || !user) {

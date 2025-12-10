@@ -1,0 +1,68 @@
+.bookDetailsContainer {
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.backBtn {
+  margin-bottom: 20px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background-color: #6b7280;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.bookDetailsContent {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.bookImage img {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.bookInfo {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bookTitle {
+  color: #1e40af; /* blue heading */
+  margin: 0;
+}
+
+.bookCategory,
+.bookPrice,
+.bookDescription {
+  color: #000; /* black text */
+  margin: 5px 0;
+}
+
+.editBtn {
+  margin-top: 20px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  background-color: #1e40af;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.loading {
+  padding: 20px;
+  text-align: center;
+  font-size: 18px;
+}

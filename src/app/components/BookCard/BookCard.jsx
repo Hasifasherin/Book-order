@@ -1,43 +1,74 @@
 "use client";
+
 import Link from "next/link";
-import Image from "next/image";
+import { useState } from "react";
+import api, { IMAGE_BASE_URL } from "@/app/utils/baseUrl";
+import { toast } from "react-toastify";
 import "./BookCard.css";
-import { IMAGE_BASE_URL } from "@/app/utils/baseUrl";
 
 export default function BookCard({ book, onDelete }) {
+  const [loading, setLoading] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
 
-  const handleDelete = () => {
-    const storedBooks = JSON.parse(localStorage.getItem("books")) || [];
-    const updatedBooks = storedBooks.filter(
-      (b) => b.id.toString() !== book.id.toString()
-    );
-
-    localStorage.setItem("books", JSON.stringify(updatedBooks));
-    onDelete?.();
-    alert("Book deleted!");
+  const handleDelete = async () => {
+    setLoading(true);
+    try {
+      await api.delete(`/admin/products/${book._id}`);
+      toast.success(`Book "${book.title}" deleted successfully!`);
+      onDelete?.();
+    } catch (err) {
+      console.error("DELETE BOOK ERROR:", err);
+      toast.error(err.response?.data?.message || "Failed to delete book!");
+    } finally {
+      setLoading(false);
+      setShowConfirm(false);
+    }
   };
 
   return (
     <div className="book-card">
-      <img
-        src={IMAGE_BASE_URL + book.image}
-        alt={book.name}
-        className="book-img"
-      />
-
-      <h2>{book.name}</h2>
-      <p>{book.author}</p>
+      <img src={IMAGE_BASE_URL + book.image} alt={book.title} className="book-img" />
+      <h2>{book.title}</h2>
+      <p>Genre: {book.category}</p>
       <p className="price">₹{book.price}</p>
 
       <div className="buttons">
-        <Link href={`/BookDetails/${book.id}`}>
+        <Link href={`/Admin/${book._id}`}>
           <button className="view-details">View</button>
         </Link>
 
-        <button className="delete-btn" onClick={handleDelete}>
+
+        <button className="delete-btn" onClick={() => setShowConfirm(true)}>
           Delete
         </button>
       </div>
+
+      {/* Confirmation Modal */}
+      {showConfirm && (
+        <div className="modal-overlay">
+          <div className="modal-box">
+            <h3>Are you sure?</h3>
+            <p>Do you really want to delete "{book.title}"?</p>
+
+            <div className="modal-actions">
+              <button
+                className="btn btn-danger"
+                onClick={handleDelete}
+                disabled={loading}
+              >
+                {loading ? "Deleting..." : "Yes, Delete"}
+              </button>
+              <button
+                className="btn btn-secondary"
+                onClick={() => setShowConfirm(false)}
+                disabled={loading}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

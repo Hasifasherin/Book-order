@@ -12,7 +12,6 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Next.js runs on server initially, so we need "use client" and localStorage
     const storedToken = localStorage.getItem("token");
     const storedUser = localStorage.getItem("authUser");
 
