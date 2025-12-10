@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import "./BookCard.css";
 
 export default function BookCard({ book, onDelete }) {
+  
   const [loading, setLoading] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 

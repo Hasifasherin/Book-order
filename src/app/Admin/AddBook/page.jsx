@@ -5,6 +5,7 @@ import api from "@/app/utils/baseUrl";
 import { useRouter } from "next/navigation";
 import Header from "@/app/components/Header/Header";
 import Footer from "@/app/components/Footer/Footer";
+import { toast } from "react-toastify";
 import "./AddBook.css"
 
 export default function AddBook() {
@@ -51,11 +52,11 @@ export default function AddBook() {
         },
       });
 
-      alert(res.data?.message || "Book added successfully!");
+      toast(res.data?.message || "Book added successfully!");
       router.push("/");
     } catch (err) {
       console.error("ADD BOOK ERROR:", err);
-      alert(err.response?.data?.message || "Failed to add book.");
+      toast(err.response?.data?.message || "Failed to add book.");
     }
   };
 

@@ -40,14 +40,14 @@
 }
 
 .bookTitle {
-  color: #1e40af; /* blue heading */
+  color: #1e40af; 
   margin: 0;
 }
 
 .bookCategory,
 .bookPrice,
 .bookDescription {
-  color: #000; /* black text */
+  color: #000; 
   margin: 5px 0;
 }
 

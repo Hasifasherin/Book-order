@@ -33,10 +33,10 @@ export default function EditBook() {
           price: book.price,
           description: book.description,
         });
-        setImage(book.image); // show current image filename
+        setImage(book.image); 
       } catch (err) {
         console.error("Failed to load book:", err);
-        router.push("/admin");
+        router.push("/");
       } finally {
         setLoading(false);
       }
@@ -55,7 +55,7 @@ export default function EditBook() {
     fd.append("category", form.category);
     fd.append("price", form.price);
     fd.append("description", form.description);
-    if (image instanceof File) fd.append("image", image); // only append if new file
+    if (image instanceof File) fd.append("image", image); 
 
     try {
       await api.put(`/admin/products/${id}`, fd, {
@@ -93,7 +93,7 @@ export default function EditBook() {
 
           <div className={styles.buttons}>
             <button type="submit" className={styles.saveBtn}>Save</button>
-            <button type="button" className={styles.cancelBtn} onClick={() => router.push("/admin")}>Cancel</button>
+            <button type="button" className={styles.cancelBtn} onClick={() => router.push(`/Admin/${id}`)}>Cancel</button>
           </div>
         </form>
       </main>

@@ -6,6 +6,7 @@ import api, { IMAGE_BASE_URL } from "@/app/utils/baseUrl";
 import Header from "@/app/components/Header/Header";
 import Footer from "@/app/components/Footer/Footer";
 import styles from "./details.module.css";
+import { toast } from "react-toastify";
 
 export default function BookDetails() {
   const { id } = useParams();
@@ -21,7 +22,7 @@ export default function BookDetails() {
         setBook(res.data.product);
       } catch (err) {
         console.error("Failed to load book:", err);
-        alert("Failed to load book.");
+        toast("Failed to load book.");
       } finally {
         setLoading(false);
       }
