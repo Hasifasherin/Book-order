@@ -43,7 +43,7 @@ export default function BookDetails() {
 
         <div className={styles.bookDetailsContent}>
           <div className={styles.bookImage}>
-            <img src={IMAGE_BASE_URL + book.image} alt={book.title} />
+            <img src={book.image} alt={book.title} />
           </div>
 
           <div className={styles.bookInfo}>

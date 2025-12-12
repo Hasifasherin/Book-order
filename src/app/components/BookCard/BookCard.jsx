@@ -28,7 +28,7 @@ export default function BookCard({ book, onDelete }) {
 
   return (
     <div className="book-card">
-      <img src={IMAGE_BASE_URL + book.image} alt={book.title} className="book-img" />
+      <img src={book.image} alt={book.title} className="book-img" />
       <h2>{book.title}</h2>
       <p>Genre: {book.category}</p>
       <p className="price">₹{book.price}</p>

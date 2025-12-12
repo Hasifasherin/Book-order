@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import api from "../utils/baseUrl"; // make sure path is correct
+import api from "../utils/baseUrl";
 
 const AuthContext = createContext();
 

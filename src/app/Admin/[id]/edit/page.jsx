@@ -82,14 +82,52 @@ export default function EditBook() {
           <input name="price" type="number" placeholder="Price" value={form.price} onChange={handleChange} required />
           <textarea name="description" placeholder="Description" value={form.description} onChange={handleChange} />
           
-          <div >
-            <label style={{ color: "black" }}>Upload new image</label>
-            <input type="file" accept="image/*" onChange={(e) => setImage(e.target.files[0])} />
-          </div>
+          <div>
+  <label style={{ color: "black" }}>Upload new image</label>
 
-          {typeof image === "string" && (
-            <img src={IMAGE_BASE_URL + image} alt="current" style={{ maxWidth: "200px", marginTop: "10px" }} />
-          )}
+  {/* Hidden actual file input */}
+  <input
+    type="file"
+    accept="image/*"
+    id="fileInput"
+    style={{ display: "none" }}
+    onChange={(e) => setImage(e.target.files[0])}
+  />
+
+  {/* Styled box showing URL as placeholder or file name */}
+  <input
+    type="text"
+    readOnly
+    onClick={() => document.getElementById("fileInput").click()}
+    placeholder={typeof image === "string" ? image : "Choose a file..."} // show Cloudinary URL initially
+    value={image instanceof File ? image.name : ""} // show file name after selection
+    style={{
+      width: "100%",
+      padding: "6px",
+      border: "1px solid #ccc",
+      borderRadius: "4px",
+      cursor: "pointer",
+      marginBottom: "5px",
+    }}
+  />
+
+  {/* Image preview */}
+  {image && typeof image === "string" && (
+    <img
+      src={image}
+      alt="current"
+      style={{ maxWidth: "200px", marginTop: "10px" }}
+    />
+  )}
+  {image && image instanceof File && (
+    <img
+      src={URL.createObjectURL(image)}
+      alt="preview"
+      style={{ maxWidth: "200px", marginTop: "10px" }}
+    />
+  )}
+</div>
+
 
           <div className={styles.buttons}>
             <button type="submit" className={styles.saveBtn}>Save</button>
