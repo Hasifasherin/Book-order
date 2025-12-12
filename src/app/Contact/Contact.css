@@ -4,14 +4,14 @@
   padding: 25px;
   background: #ffffff;
   border-radius: 12px;
-  border: 2px solid #134caf;
+  border: 2px solid #0a6b0d;
   box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
 
 .contact-title {
   text-align: center;
   font-size: 32px;
-  color: #134caf;
+  color: #0a6b0d;
   margin-bottom: 15px;
   font-weight: bold;
 }
@@ -25,8 +25,8 @@
 
 /* Contact Form */
 .contact-form-box {
-  background: #93d4f5 !important;
-  border: 1px solid #134caf;
+  background: #e8ffe8 !important;
+  border: 1px solid #0a6b0d;
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 30px;
@@ -35,7 +35,7 @@
 .form-title {
   font-size: 22px;
   margin-bottom: 15px;
-  color: #134caf;
+  color: #0a6b0d;
   text-align: center;
 }
 
@@ -54,7 +54,7 @@
 .contact-form textarea {
   width: 100%;
   padding: 10px;
-  border: 1px solid #134caf;
+  border: 1px solid #0a6b0d;
   border-radius: 8px;
   background: white;
     color: black ;
@@ -68,7 +68,7 @@
 .submit-btn {
   width: 100%;
   padding: 12px;
-  background: #134caf;
+  background: #0a6b0d;
   color: white;
   border: none;
   border-radius: 8px;
@@ -77,7 +77,7 @@
 }
 
 .submit-btn:hover {
-  background: #134caf;
+  background: #0a6b0d;
 }
 
 /* Contact Info */
@@ -86,7 +86,7 @@
 }
 
 .info-title {
-  color: #134caf;
+  color: #0a6b0d;
   font-size: 24px;
   margin-bottom: 15px;
 }
@@ -100,9 +100,9 @@
 }
 
 .info-list li {
-  background: #93d4f5;
+  background: #e8ffe8;
   padding: 12px;
   border-radius: 8px;
-  border: 1px solid #134caf;
+  border: 1px solid #0a6b0d;
   margin-bottom: 10px;
 }

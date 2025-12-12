@@ -1,5 +1,5 @@
 .book-card {
-  border: 1px solid #ccc;
+  border: 1px solid black;
   border-radius: 8px;
   padding: 10px;
   text-align: center;
@@ -20,12 +20,12 @@
 
 .book-card p {
   margin: 5px 0;
-  color: #c2c0c0;
+  color: #0e0e0e;
 }
 
 .book-card p.price {
   font-weight: bold;
-  color: #f4f0f0;
+  color: #040404;
 }
 
 .book-card .buttons {
@@ -120,7 +120,7 @@
 
 .btn-secondary {
   background-color: #6b7280;
-  color: white;
+  color: black;
 }
 
 .btn-secondary:hover {

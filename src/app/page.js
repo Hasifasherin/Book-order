@@ -4,14 +4,13 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "./context/AuthContext"; 
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import BookCard from "./components/BookCard/BookCard";
+import ProductCard from "./components/ProductCard/ProductCard"; // rename BookCard → ProductCard
 import api from "./utils/baseUrl";
-import { IMAGE_BASE_URL } from "./utils/baseUrl"; 
 
 export default function Home() {
   const router = useRouter();
   const { user, loading } = useAuth(); 
-  const [books, setBooks] = useState([]);
+  const [products, setProducts] = useState([]); // rename books → products
 
   useEffect(() => {
     if (!loading && !user) {
@@ -26,14 +25,14 @@ export default function Home() {
   const fetchProducts = async () => {
     try {
       const res = await api.get("/admin/products");
-      setBooks(res.data); 
+      setProducts(res.data); 
     } catch (err) {
       console.error(err);
     }
   };
 
-  const addProd = () => {
-    router.push("/Admin/AddBook");
+  const addProduct = () => {
+    router.push("/Admin/AddProduct"); // rename AddBook → AddProduct
   };
 
   if (loading || !user) {
@@ -44,7 +43,20 @@ export default function Home() {
     <>
       <Header />
       <main style={{ padding: "20px", minHeight: "70vh" }}>
-        <button onClick={addProd} style={{backgroundColor:"#1e40af" , padding: "10px 20px", cursor: "pointer", width:" 125px" , borderRadius:"4px"}}>Add Book</button>
+        <button
+          onClick={addProduct}
+          style={{
+            backgroundColor: "#2e7d32",
+            padding: "10px 20px",
+            cursor: "pointer",
+            width: "125px",
+            borderRadius: "4px",
+            color: "white",
+            border: "none",
+          }}
+        >
+          Add Product
+        </button>
 
         <div
           style={{
@@ -54,10 +66,10 @@ export default function Home() {
             marginTop: "20px",
           }}
         >
-          {books.map((product) => (
-            <BookCard
+          {products.map((product) => (
+            <ProductCard
               key={product._id}
-              book={product}
+              product={product} // rename book → product
               onDelete={fetchProducts}
             />
           ))}

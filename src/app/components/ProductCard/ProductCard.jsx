@@ -4,9 +4,9 @@ import Link from "next/link";
 import { useState } from "react";
 import api, { IMAGE_BASE_URL } from "@/app/utils/baseUrl";
 import { toast } from "react-toastify";
-import "./BookCard.css";
+import "./ProductCard.css";
 
-export default function BookCard({ book, onDelete }) {
+export default function ProductCard({ product, onDelete }) {
   
   const [loading, setLoading] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
@@ -14,12 +14,12 @@ export default function BookCard({ book, onDelete }) {
   const handleDelete = async () => {
     setLoading(true);
     try {
-      await api.delete(`/admin/products/${book._id}`);
-      toast.success(`Book "${book.title}" deleted successfully!`);
+      await api.delete(`/admin/products/${product._id}`);
+      toast.success(`product "${product.title}" deleted successfully!`);
       onDelete?.();
     } catch (err) {
-      console.error("DELETE BOOK ERROR:", err);
-      toast.error(err.response?.data?.message || "Failed to delete book!");
+      console.error("DELETE product ERROR:", err);
+      toast.error(err.response?.data?.message || "Failed to delete product!");
     } finally {
       setLoading(false);
       setShowConfirm(false);
@@ -28,13 +28,13 @@ export default function BookCard({ book, onDelete }) {
 
   return (
     <div className="book-card">
-      <img src={book.image} alt={book.title} className="book-img" />
-      <h2>{book.title}</h2>
-      <p>Genre: {book.category}</p>
-      <p className="price">₹{book.price}</p>
+      <img src={product.image} alt={product.title} className="book-img" />
+      <h2>{product.title}</h2>
+      <p>Genre: {product.category}</p>
+      <p className="price">₹{product.price}</p>
 
       <div className="buttons">
-        <Link href={`/Admin/${book._id}`}>
+        <Link href={`/Admin/${product._id}`}>
           <button className="view-details">View</button>
         </Link>
 
@@ -49,7 +49,7 @@ export default function BookCard({ book, onDelete }) {
         <div className="modal-overlay">
           <div className="modal-box">
             <h3>Are you sure?</h3>
-            <p>Do you really want to delete "{book.title}"?</p>
+            <p>Do you really want to delete "{product.title}"?</p>
 
             <div className="modal-actions">
               <button

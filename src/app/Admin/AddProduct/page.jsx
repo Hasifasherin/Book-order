@@ -6,9 +6,9 @@ import { useRouter } from "next/navigation";
 import Header from "@/app/components/Header/Header";
 import Footer from "@/app/components/Footer/Footer";
 import { toast } from "react-toastify";
-import "./AddBook.css"
+import "./AddProduct.css"
 
-export default function AddBook() {
+export default function AddProduct() {
   const router = useRouter();
 
   const [form, setForm] = useState({
@@ -52,11 +52,11 @@ export default function AddBook() {
         },
       });
 
-      toast(res.data?.message || "Book added successfully!");
+      toast(res.data?.message || "Product added successfully!");
       router.push("/");
     } catch (err) {
-      console.error("ADD BOOK ERROR:", err);
-      toast(err.response?.data?.message || "Failed to add book.");
+      console.error("ADD Product ERROR:", err);
+      toast(err.response?.data?.message || "Failed to add product.");
     }
   };
 
@@ -65,7 +65,7 @@ export default function AddBook() {
       <Header />
 
       <main className="addbook-container">
-        <h1>Add Book</h1>
+        <h1>Add product</h1>
 
         <form className="addbook-form" onSubmit={handleSubmit}>
           <input
@@ -108,7 +108,7 @@ export default function AddBook() {
             onChange={(e) => setImage(e.target.files[0])}
           />
 
-          <button type="submit">Add Book</button>
+          <button type="submit">Add product</button>
         <button onClick={handleCancel} > Cancel </button>
         </form>
       </main>

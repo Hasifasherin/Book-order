@@ -1,4 +1,4 @@
-.bookDetailsContainer {
+.productDetailsContainer {
   padding: 20px;
   max-width: 900px;
   margin: 0 auto;
@@ -17,13 +17,13 @@
   cursor: pointer;
 }
 
-.bookDetailsContent {
+.productDetailsContent {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
 }
 
-.bookImage img {
+.productImage img {
   width: 100%;
   max-width: 350px;
   height: auto;
@@ -31,7 +31,7 @@
   border-radius: 8px;
 }
 
-.bookInfo {
+.productInfo {
   flex: 1;
   min-width: 250px;
   display: flex;
@@ -39,14 +39,14 @@
   gap: 10px;
 }
 
-.bookTitle {
+.productTitle {
   color: #1e40af; 
   margin: 0;
 }
 
-.bookCategory,
-.bookPrice,
-.bookDescription {
+.productCategory,
+.productPrice,
+.productDescription {
   color: #000; 
   margin: 5px 0;
 }

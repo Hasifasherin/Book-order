@@ -5,58 +5,58 @@ import { useParams, useRouter } from "next/navigation";
 import api, { IMAGE_BASE_URL } from "@/app/utils/baseUrl";
 import Header from "@/app/components/Header/Header";
 import Footer from "@/app/components/Footer/Footer";
-import styles from "./details.module.css";
+import styles from "./details.module.css"; // renamed CSS file
 import { toast } from "react-toastify";
 
-export default function BookDetails() {
+export default function ProductDetails() {
   const { id } = useParams();
   const router = useRouter();
-  const [book, setBook] = useState(null);
+  const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!id) return;
-    const fetchBook = async () => {
+    const fetchProduct = async () => {
       try {
         const res = await api.get(`/admin/products/${id}`);
-        setBook(res.data.product);
+        setProduct(res.data.product);
       } catch (err) {
-        console.error("Failed to load book:", err);
-        toast("Failed to load book.");
+        console.error("Failed to load product:", err);
+        toast("Failed to load product.");
       } finally {
         setLoading(false);
       }
     };
-    fetchBook();
+    fetchProduct();
   }, [id]);
 
   if (loading) return <div className={styles.loading}>Loading...</div>;
-  if (!book) return <div className={styles.loading}>Book not found</div>;
+  if (!product) return <div className={styles.loading}>Product not found</div>;
 
   return (
     <>
       <Header />
-      <main className={styles.bookDetailsContainer}>
+      <main className={styles.productDetailsContainer}>
         <button className={styles.backBtn} onClick={() => router.push("/")}>
           ← Back
         </button>
 
-        <div className={styles.bookDetailsContent}>
-          <div className={styles.bookImage}>
-            <img src={book.image} alt={book.title} />
+        <div className={styles.productDetailsContent}>
+          <div className={styles.productImage}>
+            <img src={product.image} alt={product.title} />
           </div>
 
-          <div className={styles.bookInfo}>
-            <h1 className={styles.bookTitle}>{book.title}</h1>
-            <p className={styles.bookCategory}><strong>Category:</strong> {book.category}</p>
-            <p className={styles.bookPrice}><strong>Price:</strong> ₹{book.price}</p>
-            <p className={styles.bookDescription}>{book.description}</p>
+          <div className={styles.productInfo}>
+            <h1 className={styles.productTitle}>{product.title}</h1>
+            <p className={styles.productCategory}><strong>Category:</strong> {product.category}</p>
+            <p className={styles.productPrice}><strong>Price:</strong> ₹{product.price}</p>
+            <p className={styles.productDescription}>{product.description}</p>
 
             <button
               className={styles.editBtn}
               onClick={() => router.push(`/Admin/${id}/edit`)}
             >
-              Edit Book
+              Edit Product
             </button>
           </div>
         </div>

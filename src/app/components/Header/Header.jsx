@@ -14,9 +14,9 @@ export default function Header() {
   };
 
   return (
-    <header className="p-4 bg-blue-500 text-white flex justify-between items-center">
-      <h1 className="font-bold text-xl">BookOrder</h1>
-      <nav className="flex items-center">
+    <header className="p-8 bg-green-300 text-black flex justify-between items-center">
+      <h1 className="font-bold text-xl">Cart-in</h1>
+      <nav className="flex items-center ">
         <Link href="/" className="mr-4">Home</Link>
         <Link href="/AboutUS" className="mr-4">About us</Link>
         <Link href="/Contact" className="mr-4">Contact us</Link>
