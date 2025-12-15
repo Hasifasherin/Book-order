@@ -3,6 +3,7 @@ import "./globals.css";
 
 import { ProductProvider } from "./context/ProductContext";
 import { AuthProvider } from "./context/AuthContext";
+import { CartProvider } from "./context/CartContext"; // ✅ ADD THIS
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -28,8 +29,10 @@ export default function RootLayout({ children }) {
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <AuthProvider>
           <ProductProvider>
-            {children}
-            <ToastContainer position="top-right" autoClose={2000} />
+            <CartProvider> 
+              {children}
+              <ToastContainer position="top-right" autoClose={2000} />
+            </CartProvider>
           </ProductProvider>
         </AuthProvider>
       </body>

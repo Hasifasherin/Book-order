@@ -5,7 +5,8 @@ import { useParams, useRouter } from "next/navigation";
 import api, { IMAGE_BASE_URL } from "@/app/utils/baseUrl";
 import Header from "@/app/components/Header/Header";
 import Footer from "@/app/components/Footer/Footer";
-import styles from "./details.module.css"; // renamed CSS file
+import { useCart } from "@/app/context/CartContext";
+import styles from "./details.module.css";
 import { toast } from "react-toastify";
 
 export default function ProductDetails() {
@@ -13,6 +14,8 @@ export default function ProductDetails() {
   const router = useRouter();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { addToCart } = useCart();
+
 
   useEffect(() => {
     if (!id) return;
@@ -57,6 +60,12 @@ export default function ProductDetails() {
               onClick={() => router.push(`/Admin/${id}/edit`)}
             >
               Edit Product
+            </button>
+            <button
+              className={styles.cartBtn}
+              onClick={() => addToCart(product)}
+            >
+              Add to Cart
             </button>
           </div>
         </div>
