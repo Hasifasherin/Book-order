@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "./context/AuthContext";
@@ -16,20 +17,30 @@ export default function Home() {
 
   const itemsPerPage = 10;
 
+  // 🔐 AUTH GUARD
   useEffect(() => {
-    if (!loading && !user) router.push("/login");
+    if (!loading && !user) {
+      router.push("/login");
+    }
   }, [user, loading, router]);
 
+  // 🔁 FETCH PRODUCTS BASED ON ROLE
   useEffect(() => {
     if (user) fetchProducts();
   }, [user]);
 
   const fetchProducts = async () => {
     try {
-      const res = await api.get("/admin/products");
-      setProducts(res.data);
+      const res =
+        user.role === "admin"
+          ? await api.get("/admin/products")
+          : await api.get("/products");
+
+      // admin -> res.data
+      // user  -> res.data.products OR res.data
+      setProducts(res.data.products || res.data);
     } catch (err) {
-      console.error(err);
+      console.error("FETCH PRODUCTS ERROR:", err);
     }
   };
 
@@ -51,19 +62,22 @@ export default function Home() {
       <Header />
 
       <main style={{ padding: "20px", minHeight: "70vh" }}>
-        <button
-          onClick={() => router.push("/Admin/AddProduct")}
-          style={{
-            backgroundColor: "#2e7d32",
-            padding: "10px 20px",
-            borderRadius: "4px",
-            color: "white",
-            border: "none",
-            cursor: "pointer",
-          }}
-        >
-          Add Product
-        </button>
+        {/* ✅ ADMIN ONLY */}
+        {user.role === "admin" && (
+          <button
+            onClick={() => router.push("/Admin/AddProduct")}
+            style={{
+              backgroundColor: "#2e7d32",
+              padding: "10px 20px",
+              borderRadius: "4px",
+              color: "white",
+              border: "none",
+              cursor: "pointer",
+            }}
+          >
+            Add Product
+          </button>
+        )}
 
         {/* Product Grid */}
         <div

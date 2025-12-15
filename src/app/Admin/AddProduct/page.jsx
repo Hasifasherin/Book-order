@@ -1,15 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import api from "@/app/utils/baseUrl";
 import { useRouter } from "next/navigation";
 import Header from "@/app/components/Header/Header";
 import Footer from "@/app/components/Footer/Footer";
 import { toast } from "react-toastify";
-import "./AddProduct.css"
+import { useAuth } from "@/app/context/AuthContext";   // ✅ ADD
+import "./AddProduct.css";
 
 export default function AddProduct() {
   const router = useRouter();
+  const { user, loading } = useAuth();               // ✅ ADD
+
+  // ✅ ROLE GUARD
+  useEffect(() => {
+    if (!loading && (!user || user.role !== "admin")) {
+      router.push("/");
+    }
+  }, [user, loading, router]);
 
   const [form, setForm] = useState({
     title: "",
@@ -30,6 +39,7 @@ export default function AddProduct() {
   const handleCancel = () => {
     router.push("/");
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -59,6 +69,9 @@ export default function AddProduct() {
       toast(err.response?.data?.message || "Failed to add product.");
     }
   };
+
+  // ⛔ Prevent UI flash
+  if (loading || user?.role !== "admin") return null;
 
   return (
     <>
@@ -109,7 +122,9 @@ export default function AddProduct() {
           />
 
           <button type="submit">Add product</button>
-        <button onClick={handleCancel} > Cancel </button>
+          <button type="button" onClick={handleCancel}>
+            Cancel
+          </button>
         </form>
       </main>
 
