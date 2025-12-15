@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FiUser } from "react-icons/fi";
 import { useAuth } from "../../context/AuthContext";
+import Image from "next/image";
 import "./Header.css";
 
 export default function Header() {
@@ -18,7 +19,6 @@ export default function Header() {
     router.push("/login");
   };
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
@@ -31,12 +31,21 @@ export default function Header() {
 
   return (
     <header className="header">
-      {/* Left */}
+      {/* LEFT */}
       <div className="header-left">
-        <h1 className="font-bold text-xl">Cart-in</h1>
+        <Link href="/">
+          <Image
+            src="/logo.png"
+            alt="Logo"
+            width={50}
+            height={50}
+            priority
+            className="header-logo cursor-pointer"
+          />
+        </Link>
       </div>
 
-      {/* Center nav */}
+      {/* CENTER */}
       <nav>
         <ul className="nav-links">
           <li><Link href="/" className="nav-link">Home</Link></li>
@@ -45,13 +54,13 @@ export default function Header() {
         </ul>
       </nav>
 
-      {/* Right */}
+      {/* RIGHT */}
       {user && (
         <div className="header-right" ref={menuRef}>
           <FiUser
             size={32}
             className="user-icon"
-            onClick={() => setDropdownOpen(prev => !prev)}
+            onClick={() => setDropdownOpen((prev) => !prev)}
           />
 
           {dropdownOpen && (
