@@ -6,7 +6,6 @@ const api = axios.create({
   baseURL: API_BASE_URL,
 });
 
-// Attach token automatically for every request
 api.interceptors.request.use(
   (config) => {
     if (typeof window !== "undefined") {

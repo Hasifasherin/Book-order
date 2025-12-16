@@ -17,14 +17,14 @@ export default function Home() {
 
   const itemsPerPage = 10;
 
-  // 🔐 AUTH GUARD
+  // AUTH GUARD
   useEffect(() => {
     if (!loading && !user) {
       router.push("/login");
     }
   }, [user, loading, router]);
 
-  // 🔁 FETCH PRODUCTS BASED ON ROLE
+  //  FETCH PRODUCTS BASED ON ROLE
   useEffect(() => {
     if (user) fetchProducts();
   }, [user]);
@@ -62,7 +62,7 @@ export default function Home() {
       <Header />
 
       <main style={{ padding: "20px", minHeight: "70vh" }}>
-        {/* ✅ ADMIN ONLY */}
+        {/*  ADMIN ONLY */}
         {user.role === "admin" && (
           <button
             onClick={() => router.push("/Admin/AddProduct")}

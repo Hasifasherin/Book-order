@@ -6,14 +6,14 @@ import { useRouter } from "next/navigation";
 import Header from "@/app/components/Header/Header";
 import Footer from "@/app/components/Footer/Footer";
 import { toast } from "react-toastify";
-import { useAuth } from "@/app/context/AuthContext";   // ✅ ADD
+import { useAuth } from "@/app/context/AuthContext";   
 import "./AddProduct.css";
 
 export default function AddProduct() {
   const router = useRouter();
-  const { user, loading } = useAuth();               // ✅ ADD
+  const { user, loading } = useAuth();               
 
-  // ✅ ROLE GUARD
+ 
   useEffect(() => {
     if (!loading && (!user || user.role !== "admin")) {
       router.push("/");
@@ -70,7 +70,7 @@ export default function AddProduct() {
     }
   };
 
-  // ⛔ Prevent UI flash
+  // Prevent UI flash
   if (loading || user?.role !== "admin") return null;
 
   return (

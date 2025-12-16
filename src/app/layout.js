@@ -3,7 +3,7 @@ import "./globals.css";
 
 import { ProductProvider } from "./context/ProductContext";
 import { AuthProvider } from "./context/AuthContext";
-import { CartProvider } from "./context/CartContext"; // ✅ ADD THIS
+import { CartProvider } from "./context/CartContext";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

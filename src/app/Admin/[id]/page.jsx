@@ -20,14 +20,14 @@ export default function ProductDetails() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // 🔐 ROLE GUARD (block non-admin from admin-only actions)
+  //  ROLE GUARD (block non-admin from admin-only actions)
   useEffect(() => {
     if (!authLoading && !user) {
       router.push("/login");
     }
   }, [user, authLoading, router]);
 
-  // 🔁 FETCH PRODUCT BASED ON ROLE
+  //  FETCH PRODUCT BASED ON ROLE
   useEffect(() => {
     if (!id || !user) return;
 
@@ -87,7 +87,7 @@ export default function ProductDetails() {
               {product.description}
             </p>
 
-            {/* ✅ ADMIN ONLY */}
+            {/*  ADMIN ONLY */}
             {user.role === "admin" && (
               <button
                 className={styles.editBtn}
@@ -97,7 +97,7 @@ export default function ProductDetails() {
               </button>
             )}
 
-            {/* ✅ USER + ADMIN */}
+            {/* USER + ADMIN */}
             <button
               className={styles.cartBtn}
               onClick={() => addToCart(product)}

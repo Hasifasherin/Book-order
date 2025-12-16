@@ -13,7 +13,7 @@ export default function ProductCard({ product, onDelete }) {
   const [loading, setLoading] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 
-  // ✅ ADMIN ONLY DELETE
+  //  ADMIN ONLY DELETE
   const handleDelete = async () => {
     if (user?.role !== "admin") {
       return toast.error("Unauthorized action");
@@ -42,12 +42,12 @@ export default function ProductCard({ product, onDelete }) {
       <p className="price">₹{product.price}</p>
 
       <div className="buttons">
-        {/* ✅ VIEW FOR BOTH USER & ADMIN */}
+        {/*  VIEW FOR BOTH USER & ADMIN */}
         <Link href={`/Admin/${product._id}`}>
           <button className="view-details">View</button>
         </Link>
 
-        {/* ✅ DELETE ONLY FOR ADMIN */}
+        {/* DELETE ONLY FOR ADMIN */}
         {user?.role === "admin" && (
           <button
             className="delete-btn"
@@ -58,7 +58,6 @@ export default function ProductCard({ product, onDelete }) {
         )}
       </div>
 
-      {/* ✅ CONFIRM MODAL (ADMIN ONLY) */}
       {showConfirm && user?.role === "admin" && (
         <div className="modal-overlay">
           <div className="modal-box">
